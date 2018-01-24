@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './appContainer.scss';
+import SearchContainer from './../SearchContainer';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -10,10 +11,14 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <header>
-                <h1>Weather to Walk the Dog</h1>
-                <p>Under construction</p>
-            </header>
+            <div className="app-container">
+                <header>
+                    <h1>Weather to Walk the Dog</h1>
+                    <p>Under construction</p>
+                </header>
+
+                <SearchContainer />
+            </div>
         );
     }
 }

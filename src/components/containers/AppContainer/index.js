@@ -14,7 +14,6 @@ class AppContainer extends Component {
             <div className="app-container">
                 <header>
                     <h1>Weather to Walk the Dog</h1>
-                    <p>Under construction</p>
                 </header>
 
                 <SearchContainer />

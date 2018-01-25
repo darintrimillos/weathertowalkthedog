@@ -35,15 +35,24 @@ class AppContainer extends Component {
         return fetch(req)
             .then((response) => response.json())
             .then((data) => {
-                console.log('rest call returned');
+                localStorage.setItem('data', JSON.stringify(data));
                 return this.setState({
                     summary: data.daily.summary,
                     forecast: data.daily.data,
                     currently: data.currently
                 });
-
-                console.log('weather has been gotten', this.state);
             })
+            // need error handling here
+    }
+
+    componentDidMount() {
+        const locationData = JSON.parse(localStorage.getItem('data'));
+
+        if (locationData) {
+            this.setState({
+                summary: locationData.daily.summary
+            });
+        }
     }
 
     render() {
@@ -55,6 +64,7 @@ class AppContainer extends Component {
 
                 <section className="search-container">
                     <button onClick={this.getLocation}>GET WEATHER</button>
+                    <p>{ this.state.summary }</p>
                 </section>
                 {/* <SearchContainer /> */}
             </div>

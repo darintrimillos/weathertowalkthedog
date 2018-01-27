@@ -16,6 +16,7 @@ class RightNow extends Component {
                     <li className="summary">{this.props.currently.summary}</li>
                     <li className="feels-like">Feels like: <Temp value={this.props.currently.apparentTemperature} /></li>
                     <li className="humidity">Humidity: {this.props.currently.humidity * 100}%</li>
+                    {/* <li className="wind-speed">Wind Speed: </li> */}
                 </ul>
             </section>
         );

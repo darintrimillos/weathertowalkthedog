@@ -1,0 +1,24 @@
+.right-now {
+    padding: 10px;
+
+    h2 {
+        text-transform: uppercase;
+    }
+
+    .no-dot {
+        list-style: none;
+        padding: 0;
+    }
+
+    .temp {
+        font-size: 30px;
+
+        sup {
+            font-size: 17px;
+        }
+    }   
+
+    .summary {
+        font-weight: bold;
+    }
+}

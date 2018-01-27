@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './appContainer.scss';
-// import SearchContainer from './../SearchContainer';
+import RightNow from './../RightNow';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -50,7 +50,8 @@ class AppContainer extends Component {
 
         if (locationData) {
             this.setState({
-                summary: locationData.daily.summary
+                summary: locationData.daily.summary,
+                currently: locationData.currently
             });
         }
     }
@@ -66,7 +67,8 @@ class AppContainer extends Component {
                     <button onClick={this.getLocation}>GET WEATHER</button>
                     <p>{ this.state.summary }</p>
                 </section>
-                {/* <SearchContainer /> */}
+                
+                <RightNow currently={this.state.currently} />
             </div>
         );
     }

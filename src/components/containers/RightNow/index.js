@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import './rightNow.scss';
 import Temp from './../../presentational/Temp';
+import Timestamp from './../../presentational/Timestamp';
 
 class RightNow extends Component {
     constructor(props) {
         super(props);
+
+        this.getWindspeed = this.getWindspeed.bind(this);
+    }
+
+    getWindspeed() {
+        return this.props.currently.windSpeed === 'None' ? 
+            0 : this.props.currently.windBearing + '° at ' + this.props.currently.windSpeed + 'mph';
     }
 
     render() {
@@ -16,10 +24,11 @@ class RightNow extends Component {
                 </div>
                 <ul className="no-dot">
                     <li className="feels-like">Feels like: <Temp value={this.props.currently.apparentTemperature} /></li>
-                    <li>Wind info</li>
+                    <li>Wind: {this.getWindspeed()}</li>
                     <li className="humidity">Humidity: {this.props.currently.humidity * 100}%</li>
-                    <li>Hi/Lo</li>
-                    <li>{this.props.day.sunriseTime}</li>
+                    <li>High: <Temp value={this.props.day.temperatureHigh} /> Low: <Temp value={this.props.day.temperatureLow} /></li>
+                    <li>Sunrise: <Timestamp value={this.props.day.sunriseTime} /></li>
+                    <li>Sunset: <Timestamp value={this.props.day.sunsetTime} /></li>
                 </ul>
             </section>
         );

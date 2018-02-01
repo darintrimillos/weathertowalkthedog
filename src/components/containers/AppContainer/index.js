@@ -7,7 +7,7 @@ class AppContainer extends Component {
         super(props);
 
         this.state = {
-            location: {},
+            today: {},
             summary: "",
             currently: {},
             forecast: []
@@ -18,11 +18,9 @@ class AppContainer extends Component {
     }
 
     getLocation() {
-        console.log('getLocatin called');
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getWeather);
         } else {
-            console.log('location call failed');
             alert('cannot get location');
         }
         return;
@@ -39,7 +37,8 @@ class AppContainer extends Component {
                 return this.setState({
                     summary: data.daily.summary,
                     forecast: data.daily.data,
-                    currently: data.currently
+                    currently: data.currently,
+                    today: data.daily.data[0]
                 });
             })
             // need error handling here
@@ -51,7 +50,9 @@ class AppContainer extends Component {
         if (locationData) {
             this.setState({
                 summary: locationData.daily.summary,
-                currently: locationData.currently
+                currently: locationData.currently,
+                forecast: locationData.daily.data,
+                today: locationData.daily.data[0]
             });
         }
     }
@@ -63,12 +64,9 @@ class AppContainer extends Component {
                     <h1>Weather to Walk the Dog</h1>
                 </header>
 
-                <section className="search-container">
-                    <button onClick={this.getLocation}>GET WEATHER</button>
-                    <p>{ this.state.summary }</p>
-                </section>
+                <a onClick={this.getLocation} role="button" className="get-weather">woof!</a>
                 
-                <RightNow currently={this.state.currently} />
+                <RightNow currently={this.state.currently} day={this.state.today} />
             </div>
         );
     }

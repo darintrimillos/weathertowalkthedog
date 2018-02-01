@@ -1,24 +1,33 @@
 .right-now {
+    display: flex;
     padding: 10px;
 
-    h2 {
-        text-transform: uppercase;
-    }
-
     .no-dot {
+        flex-grow: 1;
         list-style: none;
         padding: 0;
     }
 
     .temp {
-        font-size: 30px;
+        flex-grow: 1;
+        text-align: center;
+
+        span {
+            font-size: 4.375em; // 70px
+        }
+        
+        .summary {
+            display: block;
+            font-size: 1.25em;
+        }
 
         sup {
-            font-size: 17px;
+            font-size: 1.5em; // 24px
+            top: -1.3333333333em; // -32px
         }
     }   
 
     .summary {
-        font-weight: bold;
+        font-weight: 800;
     }
 }

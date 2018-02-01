@@ -1,5 +1,5 @@
 // variables
-$color-offwhite: #cfdfda;
+$color-offwhite: #ccc;
 
 $font-header: 'Lobster Two', cursive;
 $font-main: 'Source Sans Pro', sans-serif;
@@ -8,15 +8,18 @@ $font-main: 'Source Sans Pro', sans-serif;
 body {
     margin: 0;
     padding: 0;
-    font-family: $font-main;
-    color: #000;
+    font: {
+        family: $font-main;
+        size: 100%;
+    }
+    color: #333;
     background: $color-offwhite;
 }
 
 h1 {
     font: {
        family: $font-header;
-       size: 90px;
+       size: 3em;
        style: italic;
     }
     color: #fff;
@@ -24,8 +27,20 @@ h1 {
 }
 
 header {
-    background: #236477;
+    background: #42596D;
     overflow: hidden;
+    text-align: center;
+}
+
+.get-weather {
+    background-color: #229B66;
+    color: #fff;
+    display: block;
+    font: {
+        weight: bold;
+        size: 1.625em;
+    }
+    padding: 12px;
     text-align: center;
 }
 

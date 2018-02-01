@@ -10,13 +10,16 @@ class RightNow extends Component {
     render() {
         return (
             <section className="right-now">
-                <h2>Right Now</h2>
+                <div className="temp">
+                    <Temp value={this.props.currently.temperature} /><sup>F</sup>
+                    <span className="summary">{this.props.currently.summary}</span>
+                </div>
                 <ul className="no-dot">
-                    <li className="temp"><Temp value={this.props.currently.temperature} /><sup>F</sup></li>
-                    <li className="summary">{this.props.currently.summary}</li>
                     <li className="feels-like">Feels like: <Temp value={this.props.currently.apparentTemperature} /></li>
+                    <li>Wind info</li>
                     <li className="humidity">Humidity: {this.props.currently.humidity * 100}%</li>
-                    {/* <li className="wind-speed">Wind Speed: </li> */}
+                    <li>Hi/Lo</li>
+                    <li>{this.props.day.sunriseTime}</li>
                 </ul>
             </section>
         );

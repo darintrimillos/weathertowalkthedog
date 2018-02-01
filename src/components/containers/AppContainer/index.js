@@ -7,6 +7,7 @@ class AppContainer extends Component {
         super(props);
 
         this.state = {
+            loading: false,
             today: {},
             summary: "",
             currently: {},
@@ -18,10 +19,17 @@ class AppContainer extends Component {
     }
 
     getLocation() {
+        this.setState({
+            loading: true
+        });
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getWeather);
         } else {
             alert('cannot get location');
+            this.setState({
+                loading: false
+            });
         }
         return;
     }
@@ -38,7 +46,8 @@ class AppContainer extends Component {
                     summary: data.daily.summary,
                     forecast: data.daily.data,
                     currently: data.currently,
-                    today: data.daily.data[0]
+                    today: data.daily.data[0],
+                    loading: false
                 });
             })
             // need error handling here
@@ -58,15 +67,24 @@ class AppContainer extends Component {
     }
 
     render() {
+        const loading = this.state.loading ? <div className="loader"></div> : "";
         return (
             <div className="app-container">
                 <header>
                     <h1>Weather to Walk the Dog</h1>
                 </header>
 
-                <a onClick={this.getLocation} role="button" className="get-weather">woof!</a>
+                <div className="get-weather">
+                    <a onClick={this.getLocation} role="button" className="button">woof!</a>   
+                </div>
                 
+                {loading}
+
                 <RightNow currently={this.state.currently} day={this.state.today} />
+
+                <footer>
+                    <p>Other weather apps may be more feature rich, but at least this one won't abuse your privacy. Powered by <a href="https://darksky.net">Dark Sky</a>.</p>
+                </footer>
             </div>
         );
     }

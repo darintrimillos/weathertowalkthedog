@@ -8,6 +8,7 @@ class AppContainer extends Component {
 
         this.state = {
             loading: false,
+            hasData: false,
             today: {},
             summary: "",
             currently: {},
@@ -47,7 +48,8 @@ class AppContainer extends Component {
                     forecast: data.daily.data,
                     currently: data.currently,
                     today: data.daily.data[0],
-                    loading: false
+                    loading: false,
+                    hasData: true
                 });
             })
             // need error handling here
@@ -61,13 +63,16 @@ class AppContainer extends Component {
                 summary: locationData.daily.summary,
                 currently: locationData.currently,
                 forecast: locationData.daily.data,
-                today: locationData.daily.data[0]
+                today: locationData.daily.data[0],
+                hasData: true
             });
         }
     }
 
     render() {
-        const loading = this.state.loading ? <div className="loader"></div> : "";
+        const loading = this.state.loading ? <div className="loader"></div> : null;
+        const rightNow = this.state.hasData ? <RightNow currently={this.state.currently} day={this.state.today} /> : <p className="no-data">You have no weather data.</p>;
+        
         return (
             <div className="app-container">
                 <header>
@@ -75,12 +80,12 @@ class AppContainer extends Component {
                 </header>
 
                 <div className="get-weather">
-                    <a onClick={this.getLocation} role="button" className="button">woof!</a>   
+                    <a onClick={this.getLocation} role="button" className="button">get weather!</a>   
                 </div>
                 
                 {loading}
 
-                <RightNow currently={this.state.currently} day={this.state.today} />
+                {rightNow}
 
                 <footer>
                     <p>Other weather apps may be more feature rich, but at least this one won't abuse your privacy. Powered by <a href="https://darksky.net">Dark Sky</a>.</p>

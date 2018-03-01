@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './appContainer.scss';
 import RightNow from './../RightNow';
+import WalkReport from './../WalkReport';
+import Forecast from './../Forecast';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -9,10 +11,7 @@ class AppContainer extends Component {
         this.state = {
             loading: false,
             hasData: false,
-            today: {},
-            summary: "",
-            currently: {},
-            forecast: []
+            data: {}
         }
 
         this.getLocation = this.getLocation.bind(this);
@@ -27,7 +26,7 @@ class AppContainer extends Component {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getWeather);
         } else {
-            alert('cannot get location');
+            alert('Cannot get location.');
             this.setState({
                 loading: false
             });
@@ -44,10 +43,7 @@ class AppContainer extends Component {
             .then((data) => {
                 localStorage.setItem('data', JSON.stringify(data));
                 return this.setState({
-                    summary: data.daily.summary,
-                    forecast: data.daily.data,
-                    currently: data.currently,
-                    today: data.daily.data[0],
+                    data: data,
                     loading: false,
                     hasData: true
                 });
@@ -60,10 +56,7 @@ class AppContainer extends Component {
 
         if (locationData) {
             this.setState({
-                summary: locationData.daily.summary,
-                currently: locationData.currently,
-                forecast: locationData.daily.data,
-                today: locationData.daily.data[0],
+                data: locationData,
                 hasData: true
             });
         }
@@ -71,7 +64,7 @@ class AppContainer extends Component {
 
     render() {
         const loading = this.state.loading ? <div className="loader"></div> : null;
-        const rightNow = this.state.hasData ? <RightNow currently={this.state.currently} day={this.state.today} /> : <p className="no-data">You have no weather data.</p>;
+        const hasData = this.state.hasData;
         
         return (
             <div className="app-container">
@@ -84,8 +77,16 @@ class AppContainer extends Component {
                 </div>
                 
                 {loading}
-
-                {rightNow}
+                
+                { !hasData ? (
+                    <p className="no-data">You have no weather data.</p>
+                ) : (
+                    <div className="weather-container">
+                        <RightNow currently={this.state.data.currently} day={this.state.data.daily.data[0]} />
+                        <WalkReport minutely={this.state.data.minutely} />
+                        <Forecast />
+                    </div>
+                )}
 
                 <footer>
                     <p>Other weather apps may be more feature rich, but at least this one won't abuse your privacy. Powered by <a href="https://darksky.net">Dark Sky</a>.</p>

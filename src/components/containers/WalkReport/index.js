@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './walkReport.scss';
-// import './rightNow.scss';
-// import Temp from './../../presentational/Temp';
-// import Timestamp from './../../presentational/Timestamp';
+import Temp from './../../presentational/Temp';
+import Timestamp from './../../presentational/Timestamp';
 
 class WalkReport extends Component {
     constructor(props) {
@@ -17,11 +16,11 @@ class WalkReport extends Component {
     // }
 
     render() {
-        const test = this.props.minutely.summary;
+        
         return (
             <section className="walk-report">
                 <h2>Walk Report</h2>
-                {test}
+
             </section>
         )
     }

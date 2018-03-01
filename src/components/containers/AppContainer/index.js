@@ -84,7 +84,7 @@ class AppContainer extends Component {
                     <div className="weather-container">
                         <RightNow currently={this.state.data.currently} day={this.state.data.daily.data[0]} />
                         <WalkReport minutely={this.state.data.minutely} />
-                        <Forecast />
+                        <Forecast daily={this.state.data.daily} />
                     </div>
                 )}
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './forecast.scss';
+import Timestamp from './../../presentational/Timestamp';
 
 class Forecast extends Component {
     constructor(props) {
@@ -9,12 +10,13 @@ class Forecast extends Component {
 
     render() {
         const days = this.props.daily.data.map((day) => 
-
             <div className="forecast-day" key={day.time}>
-                <h3>{day.time}</h3>
-                <span>Hi/Lo</span>
-                <span>Icon</span>
-                <span>{day.summary}</span>
+                <h3><Timestamp value={day.time} type="date-forecast" /></h3>
+                <ul>
+                    <li>Hi/Lo</li>
+                    <li>Icon</li>
+                    <li>{day.summary}</li>
+                </ul>
             </div>
         );
 

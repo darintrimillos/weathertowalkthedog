@@ -6,32 +6,50 @@ class Timestamp extends Component {
     constructor(props) {
         super(props);
 
-        this.getTime = this.getTime.bind(this);
-        this.justDate = this.getDate.bind(this);
+        this.state = {
+            timestamp: ''
+        };
     }
 
-    getTime() {
-        const date = new Date(this.props.value *1000);
-        const hours = date.getHours() > 11 ? date.getHours() - 11 : date.getHours() + 1;
-        const minutes = date.getMinutes() == 0 ? date.getMinutes() + '0' : date.getMinutes();
-        const interval = date.getHours() > 11 ? 'p.m.' : 'a.m.';
-        
-        return hours + ':' + minutes + ' ' + interval;
-    }
+    componentDidMount() {
+        // time, date, date-forecast
+        const dayMap = {
+            0: 'Sun',
+            1: 'Mon',
+            2: 'Tue',
+            3: 'Wed',
+            4: 'Thu',
+            5: 'Fri',
+            6: 'Sat'
+        };
+        const dateObj = new Date(this.props.value * 1000);
+        const month = dateObj.getMonth() + 1;
+        const date = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const day = dayMap[dateObj.getDay()];
+        const hours = dateObj.getHours() > 11 ? dateObj.getHours() - 11 : dateObj.getHours() + 1;
+        const minutes = dateObj.getMinutes() == 0 ? dateObj.getMinutes() + '0' : dateObj.getMinutes();
+        const interval = dateObj.getHours() > 11 ? 'p.m.' : 'a.m.';
 
-    getDate() {
-        const date = new Date(this.props.value * 1000);
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-        const year = date.getFullYear();
-
-        return month + '/' + day + '/' + year;
+        if (this.props.type === 'date-forecast') {
+            this.setState({
+                timestamp: day + ' ' + month + '/' + date
+            });
+        } else if (this.props.type === 'date') {
+            this.setState({
+                timestamp: month + '/' + date + '/' + year
+            });
+        } else if (this.props.type === 'time') {
+            // write better time code
+            this.setState({
+                timestamp: hours + ':' + minutes + ' ' + interval
+            });
+        }
     }
 
     render() {
-        const timestamp = this.props.fullTimestamp ? this.getDate() + ' - ' + this.getTime() : this.getTime();
         return (
-            <span className="timestamp">{timestamp}</span>
+            <span className="timestamp">{this.state.timestamp}</span>
         );
     }
 }

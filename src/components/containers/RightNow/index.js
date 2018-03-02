@@ -28,8 +28,8 @@ class RightNow extends Component {
                         <li>Wind: {this.getWindspeed()}</li>
                         <li className="humidity">Humidity: {this.props.currently.humidity * 100}%</li>
                         <li>High: <Temp value={this.props.day.temperatureHigh} /> Low: <Temp value={this.props.day.temperatureLow} /></li>
-                        <li>Sunrise: <Timestamp value={this.props.day.sunriseTime} /></li>
-                        <li>Sunset: <Timestamp value={this.props.day.sunsetTime} /></li>
+                        <li>Sunrise: <Timestamp value={this.props.day.sunriseTime} type="time" /></li>
+                        <li>Sunset: <Timestamp value={this.props.day.sunsetTime} type="time" /></li>
                     </ul>
                 </div>
                 <p className="right-now-summary">{this.props.day.summary}</p>

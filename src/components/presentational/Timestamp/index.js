@@ -33,7 +33,7 @@ class Timestamp extends Component {
 
         if (this.props.type === 'date-forecast') {
             this.setState({
-                timestamp: day + ' ' + month + '/' + date
+                timestamp: day.toUpperCase() + ' ' + month + '/' + date
             });
         } else if (this.props.type === 'date') {
             this.setState({

@@ -9,25 +9,19 @@ class Forecast extends Component {
 
 
     render() {
-        const days = this.props.daily.data.map((day) => 
+        const days = this.props.daily.data.slice(1).map((day) => 
             <div className="forecast-day" key={day.time}>
                 <h3><Timestamp value={day.time} type="date-forecast" /></h3>
-                <ul>
-                    <li>Hi/Lo</li>
-                    <li>Icon</li>
-                    <li>{day.summary}</li>
-                </ul>
+                <span>High: {day.temperatureHigh}</span>
+                <span>Low: {day.temperatureLow}</span>
+                <span>Icon</span>
+                <span>{day.summary}</span>
             </div>
         );
 
-        console.log('days', days);
-        // DAY/DATE
-        // HI/LOW
-        // ICON?
-        // SUMMARY
         return (
             <section className="forecast">
-                <h2>Five-Day Forecast</h2>
+                <h2>THE NEXT 7 DAYS</h2>
                 {days}
             </section>
         )

@@ -19,6 +19,7 @@ class AppContainer extends Component {
     }
 
     getLocation() {
+        console.log('getLocation');
         this.setState({
             loading: true
         });
@@ -72,9 +73,7 @@ class AppContainer extends Component {
                     <h1>Weather to Walk the Dog</h1>
                 </header>
 
-                <div className="get-weather">
-                    <a onClick={this.getLocation} role="button" className="button">get weather!</a>   
-                </div>
+                <button onClick={this.getLocation} className="button"><span>get weather!</span></button>
                 
                 {loading}
                 

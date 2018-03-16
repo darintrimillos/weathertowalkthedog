@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './day.scss';
 import Timestamp from './../../presentational/Timestamp';
+import Temp from './../../presentational/Temp';
 import Skycons from 'react-skycons';
 // import Sk
 
@@ -16,8 +17,8 @@ class Day extends Component {
             <div className="forecast-day" key={this.props.day.time}>
                 <div className="forecast-day-details">
                     <h3><Timestamp value={this.props.day.time} type="date-forecast" /></h3>
-                    <span>High: {this.props.day.temperatureHigh}</span>
-                    <span>Low: {this.props.day.temperatureLow}</span>
+                    <span>High: <Temp value={this.props.day.temperatureHigh} /></span>
+                    <span>Low: <Temp value={this.props.day.temperatureLow} /></span>
                     <span className="icon">
                         <Skycons color="black" icon={this.props.day.icon.split('-').join('_').toUpperCase()} autoplay={false} />
                     </span>

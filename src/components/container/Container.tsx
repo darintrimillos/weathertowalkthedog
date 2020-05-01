@@ -1,15 +1,18 @@
 import React from 'react';
 
-// interface State {
-//     weatherData: object;
-// };
+export default class Container extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {};
+  // }
 
-class Container extends React.Component {
-    state: {};
-
-    render() {
-        return <h1>Hello, darin</h1>;
-    }
+  render() {
+    return (
+      <div className="container">
+        <div className="header">
+          <h1>Weather to Walk the Dog!</h1>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default Container;

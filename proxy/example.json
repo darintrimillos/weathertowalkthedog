@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "rh":87,
+      "pod":"n",
+      "lon":118.3,
+      "pres":1009.74,
+      "timezone":"Asia/Shanghai",
+      "ob_time":"2020-05-05 21:53",
+      "country_code":"CN",
+      "clouds":0,
+      "ts":1588715614,
+      "solar_rad":96.12,
+      "state_code":"04",
+      "city_name":"Xin’an",
+      "wind_spd":9,
+      "last_ob_time":"2020-05-05T21:34:00",
+      "wind_cdir_full":"east-northeast",
+      "wind_cdir":"ENE",
+      "slp":1012.82,
+      "vis":15,
+      "h_angle":-90,
+      "sunset":"10:47",
+      "dni":412.11,
+      "dewpt":49,
+      "snow":0,
+      "uv":2.14099,
+      "precip":0,
+      "wind_dir":59,
+      "sunrise":"21:11",
+      "ghi":96.12,
+      "dhi":46.15,
+      "aqi":68,
+      "lat":34.12,
+      "weather": {
+        "icon":"c01n",
+        "code":"800",
+        "description":"Clear sky"
+      },
+      "datetime":"2020-05-05:21",
+      "temp":52.8,
+      "station":"AU855",
+      "elev_angle":-3.62,
+      "app_temp":52.8
+    }
+  ],
+  "count": 1
+}
